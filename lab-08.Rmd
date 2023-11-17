@@ -20,7 +20,7 @@ weather <- read.csv("data/weatherAUS.csv", header = TRUE)
 We will start by transform any character variables that need to be transformed into categorical. Use the following code to identify them and trasform them into factors.
 
 ```{r mutate-char}
-weather %>% 
+variables_to_transform = weather %>% 
   select(where(is.character),-Date) %>% names()
 weather <- weather %>% 
   mutate_at(vars(all_of(variables_to_transform)),factor)
@@ -46,7 +46,7 @@ weather %>%
 1. Are there any missing values in our variable of interest `RainTomorrow`? If so, we filter them out and save the new dataset as `weather_noNA`. 
 
 ```{r}
-
+weather_noNA = weather %>% filter(RainTomorrow == RainTomorrow, NA.rm = TRUE)
 ```
 
 2. Which cities are the ones with more rain days? To do this, let's analyze the `RainToday` variable. 
